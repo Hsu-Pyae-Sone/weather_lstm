@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 500" width="880" height="500" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="11" markerHeight="11" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#52514e"/>
+    </marker>
+  </defs>
+  <rect width="880" height="500" rx="14" fill="#fcfcfb"/>
+  <text x="24" y="34" font-size="18" font-weight="600" fill="#0b0b0b">Inside one LSTM cell (one day, time step t)</text>
+
+  <!-- cell box -->
+  <rect x="190" y="56" width="560" height="320" rx="16" fill="#f3f2ee" stroke="#c3c2b7"/>
+
+  <!-- cell state line (conveyor belt) -->
+  <line x1="40" y1="90" x2="236" y2="90" stroke="#1baf7a" stroke-width="4" marker-end="url(#a)"/>
+  <line x1="264" y1="90" x2="456" y2="90" stroke="#1baf7a" stroke-width="4" marker-end="url(#a)"/>
+  <line x1="484" y1="90" x2="830" y2="90" stroke="#1baf7a" stroke-width="4" marker-end="url(#a)"/>
+  <text x="30" y="78" font-size="15" fill="#0b0b0b">c<tspan font-size="11" dy="4">t-1</tspan></text>
+  <text x="836" y="78" font-size="15" fill="#0b0b0b">c<tspan font-size="11" dy="4">t</tspan></text>
+  <text x="540" y="76" font-size="12" fill="#14845c">cell state = long-term memory ("conveyor belt")</text>
+
+  <!-- operation circles -->
+  <g font-size="18" text-anchor="middle" fill="#0b0b0b">
+    <circle cx="250" cy="90" r="14" fill="#fff" stroke="#52514e"/><text x="250" y="96">×</text>
+    <circle cx="470" cy="90" r="14" fill="#fff" stroke="#52514e"/><text x="470" y="96">+</text>
+    <circle cx="470" cy="180" r="14" fill="#fff" stroke="#52514e"/><text x="470" y="186">×</text>
+    <circle cx="690" cy="262" r="14" fill="#fff" stroke="#52514e"/><text x="690" y="268">×</text>
+  </g>
+
+  <!-- gates -->
+  <g font-size="15" text-anchor="middle">
+    <rect x="215" y="242" width="70" height="40" rx="8" fill="#fde3d6" stroke="#eb6834"/><text x="250" y="267">f  σ</text>
+    <rect x="345" y="242" width="70" height="40" rx="8" fill="#fde3d6" stroke="#eb6834"/><text x="380" y="267">i  σ</text>
+    <rect x="435" y="242" width="70" height="40" rx="8" fill="#dbe9fa" stroke="#2a78d6"/><text x="470" y="267">g  tanh</text>
+    <rect x="565" y="242" width="70" height="40" rx="8" fill="#fde3d6" stroke="#eb6834"/><text x="600" y="267">o  σ</text>
+    <rect x="655" y="140" width="70" height="32" rx="16" fill="#dbe9fa" stroke="#2a78d6"/><text x="690" y="161">tanh</text>
+  </g>
+
+  <!-- gate outputs -->
+  <line x1="250" y1="242" x2="250" y2="106" stroke="#52514e" stroke-width="1.6" marker-end="url(#a)"/>
+  <polyline points="380,242 380,180 454,180" fill="none" stroke="#52514e" stroke-width="1.6" marker-end="url(#a)"/>
+  <line x1="470" y1="242" x2="470" y2="196" stroke="#52514e" stroke-width="1.6" marker-end="url(#a)"/>
+  <line x1="470" y1="164" x2="470" y2="106" stroke="#52514e" stroke-width="1.6" marker-end="url(#a)"/>
+  <line x1="690" y1="90" x2="690" y2="138" stroke="#52514e" stroke-width="1.6" marker-end="url(#a)"/>
+  <line x1="690" y1="172" x2="690" y2="246" stroke="#52514e" stroke-width="1.6" marker-end="url(#a)"/>
+  <line x1="635" y1="262" x2="674" y2="262" stroke="#52514e" stroke-width="1.6" marker-end="url(#a)"/>
+
+  <!-- small labels on the arrows -->
+  <g font-size="12" fill="#52514e">
+    <text x="258" y="170">f · c<tspan font-size="9" dy="3">t-1</tspan></text>
+    <text x="392" y="172">i</text>
+    <text x="478" y="226">g</text>
+    <text x="478" y="140">i · g</text>
+    <text x="698" y="120">c<tspan font-size="9" dy="3">t</tspan></text>
+    <text x="642" y="254">o</text>
+  </g>
+
+  <!-- hidden output -->
+  <polyline points="690,278 690,410 830,410" fill="none" stroke="#2a78d6" stroke-width="4" marker-end="url(#a)"/>
+  <text x="836" y="398" font-size="15" fill="#0b0b0b">h<tspan font-size="11" dy="4">t</tspan></text>
+  <text x="708" y="440" font-size="12" fill="#52514e">to the next day, and on the</text>
+  <text x="708" y="456" font-size="12" fill="#52514e">last day to the output layer</text>
+
+  <!-- input bus -->
+  <line x1="40" y1="410" x2="158" y2="410" stroke="#2a78d6" stroke-width="4"/>
+  <text x="30" y="398" font-size="15" fill="#0b0b0b">h<tspan font-size="11" dy="4">t-1</tspan></text>
+  <line x1="160" y1="480" x2="160" y2="414" stroke="#52514e" stroke-width="3"/>
+  <text x="172" y="476" font-size="15" fill="#0b0b0b">x<tspan font-size="11" dy="4">t</tspan><tspan dy="-4" font-size="12" fill="#52514e">  today's 3 inputs</tspan></text>
+  <circle cx="160" cy="410" r="5" fill="#52514e"/>
+  <polyline points="160,410 160,330 600,330" fill="none" stroke="#52514e" stroke-width="2.4"/>
+  <g stroke="#52514e" stroke-width="1.6">
+    <line x1="250" y1="330" x2="250" y2="286" marker-end="url(#a)"/>
+    <line x1="380" y1="330" x2="380" y2="286" marker-end="url(#a)"/>
+    <line x1="470" y1="330" x2="470" y2="286" marker-end="url(#a)"/>
+    <line x1="600" y1="330" x2="600" y2="286" marker-end="url(#a)"/>
+  </g>
+  <text x="300" y="352" font-size="12" fill="#52514e">[x<tspan font-size="9" dy="3">t</tspan><tspan dy="-3">, h</tspan><tspan font-size="9" dy="3">t-1</tspan><tspan dy="-3">] · W + b  → 4 gates at once</tspan></text>
+
+  <!-- legend -->
+  <g font-size="12" fill="#0b0b0b">
+    <rect x="200" y="392" width="14" height="14" rx="3" fill="#fde3d6" stroke="#eb6834"/>
+    <text x="220" y="404">σ gate (0..1): how much to let through</text>
+    <rect x="200" y="416" width="14" height="14" rx="3" fill="#dbe9fa" stroke="#2a78d6"/>
+    <text x="220" y="428">tanh (−1..1): a value to write or show</text>
+    <text x="200" y="456" fill="#52514e">f forget · i input · g candidate · o output</text>
+  </g>
+</svg>
